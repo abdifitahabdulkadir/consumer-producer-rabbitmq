@@ -51,3 +51,8 @@ export type User = Prisma.UserModel
  * 
  */
 export type RefershToken = Prisma.RefershTokenModel
+/**
+ * Model ResetToken
+ * 
+ */
+export type ResetToken = Prisma.ResetTokenModel

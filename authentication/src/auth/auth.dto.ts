@@ -20,9 +20,12 @@ export const ChangePasswordSchema = z.object({
   OldPassword: z.string().min(1, 'Old password is required'),
   newPassword: z.string().min(1, 'New password is required'),
 });
-
+export const SendResetPasswordSchema = LoginSchema.pick({
+  email: true,
+});
 //types
 export type SignUpDto = z.infer<typeof SignUpSchema>;
 export type LoginDTO = z.infer<typeof LoginSchema>;
 export type RefereshTokenDTO = z.infer<typeof RefereshTokenSchema>;
 export type ChangePasswordDTO = z.infer<typeof ChangePasswordSchema>;
+export type SendResetDTO = z.infer<typeof SendResetPasswordSchema>;

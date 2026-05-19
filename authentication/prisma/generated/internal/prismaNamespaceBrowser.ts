@@ -52,7 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  RefershToken: 'RefershToken'
+  RefershToken: 'RefershToken',
+  ResetToken: 'ResetToken'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -90,6 +91,15 @@ export const RefershTokenScalarFieldEnum = {
 } as const
 
 export type RefershTokenScalarFieldEnum = (typeof RefershTokenScalarFieldEnum)[keyof typeof RefershTokenScalarFieldEnum]
+
+
+export const ResetTokenScalarFieldEnum = {
+  token: 'token',
+  userId: 'userId',
+  expirationDate: 'expirationDate'
+} as const
+
+export type ResetTokenScalarFieldEnum = (typeof ResetTokenScalarFieldEnum)[keyof typeof ResetTokenScalarFieldEnum]
 
 
 export const SortOrder = {

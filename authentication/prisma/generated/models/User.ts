@@ -191,6 +191,7 @@ export type UserWhereInput = {
   name?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   refershToken?: Prisma.XOR<Prisma.RefershTokenNullableScalarRelationFilter, Prisma.RefershTokenWhereInput> | null
+  resetToken?: Prisma.XOR<Prisma.ResetTokenNullableScalarRelationFilter, Prisma.ResetTokenWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
@@ -201,6 +202,7 @@ export type UserOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   password?: Prisma.SortOrder
   refershToken?: Prisma.RefershTokenOrderByWithRelationInput
+  resetToken?: Prisma.ResetTokenOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -214,6 +216,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   refershToken?: Prisma.XOR<Prisma.RefershTokenNullableScalarRelationFilter, Prisma.RefershTokenWhereInput> | null
+  resetToken?: Prisma.XOR<Prisma.ResetTokenNullableScalarRelationFilter, Prisma.ResetTokenWhereInput> | null
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -248,6 +251,7 @@ export type UserCreateInput = {
   name: string
   password: string
   refershToken?: Prisma.RefershTokenCreateNestedOneWithoutUserInput
+  resetToken?: Prisma.ResetTokenCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -258,6 +262,7 @@ export type UserUncheckedCreateInput = {
   name: string
   password: string
   refershToken?: Prisma.RefershTokenUncheckedCreateNestedOneWithoutUserInput
+  resetToken?: Prisma.ResetTokenUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -268,6 +273,7 @@ export type UserUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   refershToken?: Prisma.RefershTokenUpdateOneWithoutUserNestedInput
+  resetToken?: Prisma.ResetTokenUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -278,6 +284,7 @@ export type UserUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   refershToken?: Prisma.RefershTokenUncheckedUpdateOneWithoutUserNestedInput
+  resetToken?: Prisma.ResetTokenUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -361,6 +368,20 @@ export type UserUpdateOneRequiredWithoutRefershTokenNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRefershTokenInput, Prisma.UserUpdateWithoutRefershTokenInput>, Prisma.UserUncheckedUpdateWithoutRefershTokenInput>
 }
 
+export type UserCreateNestedOneWithoutResetTokenInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutResetTokenInput, Prisma.UserUncheckedCreateWithoutResetTokenInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutResetTokenInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutResetTokenNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutResetTokenInput, Prisma.UserUncheckedCreateWithoutResetTokenInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutResetTokenInput
+  upsert?: Prisma.UserUpsertWithoutResetTokenInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutResetTokenInput, Prisma.UserUpdateWithoutResetTokenInput>, Prisma.UserUncheckedUpdateWithoutResetTokenInput>
+}
+
 export type UserCreateWithoutRefershTokenInput = {
   id?: string
   email: string
@@ -368,6 +389,7 @@ export type UserCreateWithoutRefershTokenInput = {
   updatedAt?: Date | string
   name: string
   password: string
+  resetToken?: Prisma.ResetTokenCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRefershTokenInput = {
@@ -377,6 +399,7 @@ export type UserUncheckedCreateWithoutRefershTokenInput = {
   updatedAt?: Date | string
   name: string
   password: string
+  resetToken?: Prisma.ResetTokenUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRefershTokenInput = {
@@ -402,6 +425,7 @@ export type UserUpdateWithoutRefershTokenInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  resetToken?: Prisma.ResetTokenUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRefershTokenInput = {
@@ -411,6 +435,63 @@ export type UserUncheckedUpdateWithoutRefershTokenInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  resetToken?: Prisma.ResetTokenUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutResetTokenInput = {
+  id?: string
+  email: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  name: string
+  password: string
+  refershToken?: Prisma.RefershTokenCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutResetTokenInput = {
+  id?: string
+  email: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  name: string
+  password: string
+  refershToken?: Prisma.RefershTokenUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutResetTokenInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutResetTokenInput, Prisma.UserUncheckedCreateWithoutResetTokenInput>
+}
+
+export type UserUpsertWithoutResetTokenInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutResetTokenInput, Prisma.UserUncheckedUpdateWithoutResetTokenInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutResetTokenInput, Prisma.UserUncheckedCreateWithoutResetTokenInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutResetTokenInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutResetTokenInput, Prisma.UserUncheckedUpdateWithoutResetTokenInput>
+}
+
+export type UserUpdateWithoutResetTokenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  refershToken?: Prisma.RefershTokenUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutResetTokenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  refershToken?: Prisma.RefershTokenUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -423,6 +504,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   password?: boolean
   refershToken?: boolean | Prisma.User$refershTokenArgs<ExtArgs>
+  resetToken?: boolean | Prisma.User$resetTokenArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -455,6 +537,7 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "createdAt" | "updatedAt" | "name" | "password", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   refershToken?: boolean | Prisma.User$refershTokenArgs<ExtArgs>
+  resetToken?: boolean | Prisma.User$resetTokenArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -463,6 +546,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     refershToken: Prisma.$RefershTokenPayload<ExtArgs> | null
+    resetToken: Prisma.$ResetTokenPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -866,6 +950,7 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   refershToken<T extends Prisma.User$refershTokenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$refershTokenArgs<ExtArgs>>): Prisma.Prisma__RefershTokenClient<runtime.Types.Result.GetResult<Prisma.$RefershTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  resetToken<T extends Prisma.User$resetTokenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$resetTokenArgs<ExtArgs>>): Prisma.Prisma__ResetTokenClient<runtime.Types.Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1310,6 +1395,25 @@ export type User$refershTokenArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   include?: Prisma.RefershTokenInclude<ExtArgs> | null
   where?: Prisma.RefershTokenWhereInput
+}
+
+/**
+ * User.resetToken
+ */
+export type User$resetTokenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ResetToken
+   */
+  select?: Prisma.ResetTokenSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ResetToken
+   */
+  omit?: Prisma.ResetTokenOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ResetTokenInclude<ExtArgs> | null
+  where?: Prisma.ResetTokenWhereInput
 }
 
 /**

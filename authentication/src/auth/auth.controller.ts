@@ -5,6 +5,7 @@ import {
   Inject,
   Post,
   Put,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import z from 'zod';
@@ -15,6 +16,8 @@ import {
   ChangePasswordSchema,
   type LoginDTO,
   LoginSchema,
+  type SendResetDTO,
+  SendResetPasswordSchema,
   type SignUpDto,
   SignUpSchema,
 } from './auth.dto.js';
@@ -36,6 +39,31 @@ export class AuthController {
   @Get('users')
   async getAllUsers() {
     return await this.authService.getAllUsers();
+  }
+
+  @Post('reset')
+  async resetPassword(
+    @Body(new ZodValidationPipe(SendResetPasswordSchema)) data: SendResetDTO,
+  ) {
+    return await this.authService.sendResetLink(data);
+  }
+
+  @Put('reset-password')
+  async resetNewpasswrod(
+    @Body(
+      new ZodValidationPipe(
+        ChangePasswordSchema.omit({
+          OldPassword: true,
+        }),
+      ),
+    )
+    data: Omit<ChangePasswordDTO, 'OldPassword'>,
+    @Query('token') token: string,
+  ) {
+    return await this.authService.setNewPasswrod({
+      ...data,
+      token,
+    });
   }
 
   @UseGuards(AuthGuard)

@@ -5,14 +5,21 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import bcrypt from 'bcrypt';
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid, v6 } from 'uuid';
 import { DatabseService } from '../../src/database/database.service.js';
-import { ChangePasswordDTO, LoginDTO, SignUpDto } from './auth.dto.js';
+import { EmailService } from '../../src/email/email.service.js';
+import {
+  ChangePasswordDTO,
+  LoginDTO,
+  SendResetDTO,
+  SignUpDto,
+} from './auth.dto.js';
 @Injectable()
 export class AuthService {
   constructor(
     private readonly db: DatabseService,
     private readonly jwt: JwtService,
+    private readonly email: EmailService,
   ) {}
 
   async signUp(user: SignUpDto) {
@@ -160,6 +167,66 @@ export class AuthService {
 
     return {
       message: 'successfully changed your passwrod. please login',
+    };
+  }
+
+  async sendResetLink({ email }: SendResetDTO) {
+    const checkUser = await this.db.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    if (checkUser) {
+      const resetToken = v6();
+      const expirationDate = new Date();
+      expirationDate.setHours(expirationDate.getHours() + 1);
+      await this.db.resetToken.create({
+        data: {
+          userId: checkUser.id,
+          token: resetToken,
+          expirationDate,
+        },
+      });
+      await this.email.sendEmaillink({
+        email,
+        token: resetToken,
+      });
+    }
+    return {
+      message: 'Email has been sent. please check your inbox or spam folder. ',
+    };
+  }
+
+  async setNewPasswrod(
+    data: Omit<ChangePasswordDTO, 'OldPassword'> & {
+      token: string;
+    },
+  ) {
+    const tokenData = await this.db.resetToken.findFirst({
+      where: {
+        token: data.token,
+        expirationDate: {
+          gt: new Date(),
+        },
+      },
+    });
+
+    if (!tokenData) {
+      throw new BadRequestException('Invalid Reset Link Or Link has expirated');
+    }
+
+    const hashedPassword = await bcrypt.hash(data.newPassword, 10);
+    await this.db.user.update({
+      where: {
+        id: tokenData.userId,
+      },
+      data: {
+        password: hashedPassword,
+      },
+    });
+
+    return {
+      message: 'Your Password has been reset successfully.',
     };
   }
 }

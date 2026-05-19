@@ -18,9 +18,17 @@ model User {
   password String 
 
   refershToken RefershToken?
+  resetToken ResetToken?
 }
 
 model RefershToken {
+  token String 
+  userId String @unique 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expirationDate DateTime
+}
+
+model ResetToken {
   token String 
   userId String @unique 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

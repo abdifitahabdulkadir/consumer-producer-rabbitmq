@@ -10,4 +10,5 @@
  */
 export type * from './models/User.js'
 export type * from './models/RefershToken.js'
+export type * from './models/ResetToken.js'
 export type * from './commonInputTypes.js'
