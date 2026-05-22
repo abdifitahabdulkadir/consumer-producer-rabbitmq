@@ -7,6 +7,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { type Request } from 'express';
 import { Observable } from 'rxjs';
+
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private readonly jwt: JwtService) {}
@@ -29,7 +30,7 @@ export class AuthGuard implements CanActivate {
 
       request.body.userId = result.userId;
       return true;
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException('You dont have access to this resource');
     }
   }

@@ -22,6 +22,7 @@ import {
   SignUpSchema,
 } from './auth.dto.js';
 import { AuthService } from './auth.service.js';
+
 @Controller('auth')
 export class AuthController {
   constructor(@Inject(AuthService) private readonly authService: AuthService) {}

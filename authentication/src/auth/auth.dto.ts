@@ -10,7 +10,7 @@ export const LoginSchema = SignUpSchema.omit({
   name: true,
 });
 
-const RefereshTokenSchema = z.object({
+export const RefereshTokenSchema = z.object({
   token: z.string().min(1, 'Refersh Token is required'),
   userId: z.string().min(1, 'UserID is required'),
   expirationDate: z.string().min(1, 'Expir'),
